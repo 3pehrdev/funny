@@ -1,5 +1,5 @@
 local function run(msg)
-local text = [[🌐_You Can /cmds To See The Help_]]
+local text = [[🌐_You Can Use /cmds To See The Help_]]
     send_api_msg(msg, get_receiver_api(msg), text, true, 'md')
 end
 return {
