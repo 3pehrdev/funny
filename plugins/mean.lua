@@ -1,7 +1,8 @@
-local function run(msg, matches)
+local function(msg, matches)
   local htp = http.request('http://api.vajehyab.com/v2/public/?q='..URL.escape(matches[1]))
   local data = json:decode(htp)
-	return 'Word : '..(data.data.title or data.search.q)..'\n\nMean : '..(data.data.text or '----' )..'\n\nSource: '..(data.data.source or '----' )..'\n\n'..(data.error.message or '')..'\n\n@Funn_RoBot
+	local text = '*Word* : `'..(data.data.title or data.search.q)..'`\n\n*Mean :* _'..(data.data.text or '----' )..'_\n\n*Source:* _'..(data.data.source or '----' )..'_\n\n_'..(data.error.message or '')..'_\n\n[Funny😼👊](http://telegram.me/Funn_RoBot)'
+send_api_msg(msg, get_receiver_api(msg), text, true, 'md')
 end
 return {
   patterns = {
