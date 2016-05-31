@@ -9,7 +9,7 @@ local function save_value(msg, name, value)
   end
   if hash then
     redis:hset(hash, name, value)
-    return "انجام شد"
+    return "Done!"
   end
 end
 local function get_variables_hash(msg)
@@ -33,7 +33,7 @@ end
 local function run(msg, matches)
 if matches[1]:lower() == 'setcommand' then
   if not is_momod(msg) then
-    return "فقط برای مدیر!"
+    return "Only For The Sudo"
   end
   local name = string.sub(matches[2], 1, 50)
   local value = string.sub(matches[3], 1, 1000)
@@ -41,17 +41,15 @@ if matches[1]:lower() == 'setcommand' then
   local text = save_value(msg, name, value)
   return text
 end
- if matches[1] == '!' or '/' or '#' then
-    local text = 'get_value(msg, matches[2])'
+    return get_value(msg, matches[2])
   else
-    local text =
-send_api_msg(msg, get_receiver_api(msg), text, true, 'md')
+    return
   end
 end
 return {
   patterns = {
    "^[!/#](setcommand) ([^%s]+) (.+)$",
-   "^([!/#])(.+)$",
+   "^(.+)$",
   }, 
   run = run 
 }
