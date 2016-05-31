@@ -1,6 +1,6 @@
 local function run(msg)
-local text = [[🌐_You Can Use /cmds To See The Help_]]
-    send_api_msg(msg, get_receiver_api(msg), text, true, 'md')
+text = "🌐You Can Use /cmds To See The Help"
+    reply_msg(extra.Reply, text, ok_cb, false)
 end
 return {
  patterns = {
