@@ -41,6 +41,7 @@ if matches[1]:lower() == 'setcommand' then
   local text = save_value(msg, name, value)
   return text
 end
+ if matches[1] == '' then
     return get_value(msg, matches[2])
   else
     return
