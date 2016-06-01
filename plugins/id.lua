@@ -1,16 +1,18 @@
-do
-
-function run(msg, matches)
-local reply_id = msg['id']
-local text = '♻️"..msg.from.print_name.."\n @"..msg.from.username..")\n♻️Your ID : "..msg.from.id..".'
-if matches[1] == '/id' then
-reply_msg(reply_id, text, ok_cb, false)
+do function run(msg, matches)
+if matches[1]:lower() == 'id' and is_momod(msg) then
+local text = "☑️ ["..msg.from.print_name.."](https://telegram.me/"..msg.from.username..") ☑️\n🔵*Your ID* : _"..msg.from.id.."_\n🔴*Group ID* : _"..msg.to.id.."_"
+send_api_msg(msg, get_receiver_api(msg), text, true, 'md')
 end
-end 
 end
 return {
+description = "show your id",
+usage = {
+moderator = {
+"!id : show your userid and information" },
+},
 patterns = {
-    "^/id"
+"^/([Ii][Dd])$",
 },
 run = run
 }
+end
