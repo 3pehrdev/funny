@@ -11,7 +11,7 @@ moderator = {
 "!id : show your userid and information" },
 },
 patterns = {
-"^/([Ii][Dd])$",
+"^/([Ii][Dd])",
 },
 run = run
 }
