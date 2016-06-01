@@ -14,5 +14,3 @@ patterns = {
 },
 run = run
 }
-
-end
