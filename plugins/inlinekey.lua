@@ -1,12 +1,7 @@
 local api_key = '171018888:AAFARdicFOJmb4gYlvXhqfDoNdCfuNswrxw'
 local function run(msg,matches)
     if is_sudo(msg) then
-    local text = URL.escape(matches[2])
-    local channel_id = matches[1]  
-  local link_text = URL.escape(matches[3])
-    local link = URL.escape(matches[4])
-    local keyboard = '{"inline_keyboard":[[{"text":"'..link_text..'","url":"'..link..'"}]]}'
-    local url = 'https://api.telegram.org/bot'..api_key..'/sendMessage?chat_id='..channel_id..'&parse_mode=Markdown&text='..text..'&disable_web_page_preview=true&reply_markup='..keyboard
+    local url = 'https://api.telegram.org/bot'..api_key..'/sendMessage?chat_id='..msg.to.id..'&parse_mode=Markdown&text=*test*&disable_web_page_preview=true&reply_markup= {"inline_keyboard":[[{"text":"test","url":"test.com"}]]}
     local dat, res = https.request(url)
       if res == 400 then
          reply_msg(msg.id, 'Error !', ok_cb, true)    
@@ -17,7 +12,7 @@ local function run(msg,matches)
   end
   return {
       patterns = {
-          "^[!/#]channel (.*)+(.*)+(.*)+(.*)$"
+          "^[!/#]test$"
           },
       run = run
   }
